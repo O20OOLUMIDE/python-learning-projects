@@ -1,0 +1,32 @@
+# ROT13 problem:
+
+# Create file
+FileName = "program data.txt"
+TextFile = open("original.txt", "w")
+TextFile.write("HELLO WORLD\nTHIS IS A TEST FILE\nROT13 EXAMPLE")
+TextFile.close
+
+# Subroutine to execute ROT13 algorithm on each subroutine 
+def ROT13(input_file, output_file):
+    # Open the original file and read content
+    with open(input_file, "r") as f:
+        text = f.read()
+
+    result = ""  # Store the converted text here
+
+    for char in text:
+        ascii_val = ord(char)
+        if 65 <= ascii_val <= 90:  # Only uppercase letters
+            shifted = ascii_val + 13
+            if shifted > 90:
+                shifted = shifted - 26
+            result += chr(shifted)
+        else:
+            result += char  # Non-uppercase letters stay the same
+
+    # Write the result to the new file
+    with open(output_file, "w") as f:
+        f.write(result)
+
+# Main program 
+ROT13("original.txt", "rot13_output.txt")
