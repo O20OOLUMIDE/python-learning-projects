@@ -1,0 +1,20 @@
+# Attributes problem 
+
+# Subroutine to allow user to write attributes in game 
+def EnterAttributes () : 
+name = input ("Enter character name: ") 
+attack = int (input ("Enter attack (0-100) : ") ) 
+defence = int (input ("Enter defence (0-100) : ")) 
+return name, attack, defence 
+
+# Subroutine to write data in a file 
+def WriteToFile (name, attack, defence) : 
+file = open ("RPG_Game. txt", "w") 
+file. write("Name: " + name + "\n") 
+file. write ("Attack: " + str (attack) + "\n") 
+file. write ("Defence: " + str (defence) + "\n") 
+file. close () 
+
+# Main program 
+player_name, player_attack, player_defence = EnterAttributes () 
+WriteToFile (player_name, player_attack, player_defence)| 
