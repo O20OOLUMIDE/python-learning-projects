@@ -1,0 +1,33 @@
+# Gamertag problem
+
+# Create
+FileName = "gamedata.txt"
+TextFile = open(FileName, "w")
+TextFile.close()
+
+# Subroutine asks users for their email address and gamertag
+def Gamertag():
+    email = input("Enter email address: ")
+    gamer_tag = input("Enter gamer tag: ")
+
+    TextFile = open(FileName, "r")
+    lines = TextFile.readlines()
+    TextFile.close()
+
+    found = False
+
+    for i in range(0, len(lines), 2):
+        if lines[i].strip() == email and lines[i + 1].strip() == gamer_tag:
+            found = True
+
+    if found == False:
+        TextFile = open(FileName, "a")
+        TextFile.write(email + "\n")
+        TextFile.write(gamer_tag + "\n")
+        TextFile.close()
+        print("Gamertag added")
+    else:
+        print("Email and gamertag already exist")
+        
+# Main program
+Gamertag()
