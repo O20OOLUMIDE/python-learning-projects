@@ -1,0 +1,68 @@
+# Shopping list problem
+
+# Subroutine for menu to allo wuser to choose
+def menu():
+    print("1. Create new shopping list")
+    print("2. Add Item to existing lisr")
+    print("3. Remove Item from list")
+    print("4. Output shopping list")
+
+    choice = input("Choose an option: ")
+    return choice
+
+# A subroutine that creates a list
+def create_new_list():
+    choice = "yes"
+    listname = input("Enter name of new shopping list: ")
+    FileName = listname
+    TextFile = open(FileName, "w")
+    while choice == "yes":
+          item = input("Enter the item you want to write in a line: ")
+          TextFile.write(item + "\n")
+          choice = input("do you want to write more items, yes/no ?").strip().lower()
+    TextFile.close()
+    
+# Subroutine that adds items to existing list
+def add_item():
+    choice = "yes"
+    listname = input("Enter name of existing shopping list")
+    TextFile = open(listname, "a")
+    while choice == "yes":
+        item = input("Enter the item you want to write in a line: ")
+        TextFile.write(item + "\n")
+        choice = input("do you want to write more items, yes/no ?").strip().lower()
+    TextFile.close()
+    
+# Subroutine to remove item from list
+def remove_item():
+    choice = "yes"
+    listname = input("Enter name of existing shopping list: ")
+    TexTfile = open(listname, "r")
+    while choice == "yes":
+        items = TextFile.readlines()
+        item_to_delete = input("Enter the item you want to delete: ")
+        items = [item for item in items if item.strip() != item_to_delete]
+        TextFile = open(listname, "w")
+        TextFile.write(items)
+        choice = input("do you want to write more items, yes/no ?").strip().lower()
+    TextFile.close()        
+        
+
+# Subroutine to output items in a list
+def output_list():
+    listname = input("Enter name of shopping list: ")
+    TextFile = open(listname, "r")
+    for line in TextFile:
+        print(line.strip())
+
+# Main program
+choice = menu()
+
+if choice == "1":
+    create_new_list()
+elif choice == "2":
+    add_item()
+elif choice == "3":
+    remove_item()
+elif choice == "4":
+    output_list()
