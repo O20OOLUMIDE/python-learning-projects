@@ -1,0 +1,49 @@
+# Vending machine problem
+
+vendat = {
+    1: ["Coke", 1.50, 10],
+    2: ["Water", 1.00, 15],
+    3: ["Crisps", 0.80, 20]
+}
+
+# subroutine to create file
+def create_file():
+    with open("vendat.txt", "w") as file:
+        for number in vendat:
+            name, price, stock = vendat[number]
+            file.write(f"{number},{name},{price},{stock}\n")
+
+# Subroutine that outputs items to customers
+def vending_machine():
+
+    vendat = {}   # Create dictionary inside function
+    Filename = "vendat.txt"
+
+    # Load file
+    with open(Filename, "r") as Textfile:
+        for line in Textfile:
+            number, name, price, stock = line.strip().split(",")
+            vendat[int(number)] = [name, float(price), int(stock)]
+
+    # Ask user for choice
+    choice = int(input("Enter item number: "))
+
+    if choice in vendat:
+        if vendat[choice][2] > 0:
+            print("You selected:", vendat[choice][0])
+            vendat[choice][2] -= 1
+        else:
+            print("Item out of stock")
+    else:
+        print("Invalid choice")
+
+    # Save updated data back to file
+    with open(Filename, "w") as Textfile:
+        for number in vendat:
+            name, price, stock = vendat[number]
+            Textfile.write(f"{number},{name},{price},{stock}\n")
+
+
+# Main program
+create_file()
+vending_machine()
