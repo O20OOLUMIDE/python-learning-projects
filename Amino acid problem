@@ -19,12 +19,12 @@ def code_sequence():
         group = DNA[i:i+3]
         codons.append(group)
 
-    unique_codons = set(codons)
+    search = input("Enter the 3-letter amino acid sequence to search for: ")
+    count = codons.count(search)
 
-    return codons, unique_codons
+    return count
 
 # Main program
-codons, unique_codons = code_sequence()
+result = code_sequence()
 
-print("Total codons: ", len(codons))
-print("Number of unique codons:", len(unique_codons))
+print("Number of times the amino acid appears:", result)
