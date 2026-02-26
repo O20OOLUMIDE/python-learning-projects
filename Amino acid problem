@@ -1,0 +1,30 @@
+# Amino acid problem
+
+# create file
+filename = "DNA data.txt"
+textfile = open(filename, "w")
+textfile.write("ACAAGATGCCATTGTCCCCCGGCCTCCTGCTGCTGCTGCTCTCCGGGGCCACGGCCACCGCTGCCCTGCCCCTGGAGGGTGGCCCCACCGGCCGAGACAGCGAGCATATGCAGGAAGCGGCAGGAATAAGGAAAAGCGGACTCCTGACTTTCCTCGCTTGGTGGTTTGAGTGGACCTCCCAGGCCAGTGCCGGGCCCCTCATAGGAGAGG")
+textfile.close()
+
+# subroutine that reads DNA sequence
+def code_sequence():
+    filename = input("Enter name of file the DNA sequences are on: ")
+    textfile = open(filename, "r")
+    DNA = textfile.read().strip()
+    textfile.close()
+
+    codons = []
+
+    for i in range(0, len(DNA) - 2, 3):
+        group = DNA[i:i+3]
+        codons.append(group)
+
+    unique_codons = set(codons)
+
+    return codons, unique_codons
+
+# Main program
+codons, unique_codons = code_sequence()
+
+print("Total codons: ", len(codons))
+print("Number of unique codons:", len(unique_codons))
