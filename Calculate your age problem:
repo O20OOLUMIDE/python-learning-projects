@@ -3,6 +3,7 @@
 # Function to safely get a valid integer year from the user
 import datetime
 
+# Function to safely get a valid integer year from the user
 def get_valid_year(prompt):
     while True:
         try:
@@ -10,18 +11,23 @@ def get_valid_year(prompt):
         except ValueError:
             print("Please enter a valid number.")
 
-# Subroutine to output your age
+
+# Function to calculate and display age category
 def Age():
     UserName = input("What is your name?: ")
     BirthYear = get_valid_year("What year were you born?: ")
 
     CURRENT_YEAR = datetime.datetime.now().year
+
+    if BirthYear > CURRENT_YEAR:
+        print("You can't be born in the future.")
+        return
+
     Age = CURRENT_YEAR - BirthYear
 
     print("Hi", UserName)
     print("I think you are", Age, "years old.")
 
-    # Age category check
     if Age >= 18:
         print("That means you are an adult.")
     elif Age >= 13:
@@ -29,5 +35,6 @@ def Age():
     else:
         print("That means you are a child.")
 
-# Main program
+
+# Main Program
 Age()
