@@ -1,0 +1,16 @@
+# Palindrome
+
+# Function to return if string is a plaindrome
+def Palindrome(Text):
+    if Text == "":
+        return False
+
+    Text = Text.lower()
+    Checks = len(Text) // 2
+    IsPalindrome = True
+
+    for Index in range(Checks):
+        if Text[Index] != Text[-Index-1]:
+            IsPalindrome = False
+
+    return IsPalindrome
